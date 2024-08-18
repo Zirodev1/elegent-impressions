@@ -20,22 +20,28 @@ const Blog = () => {
   }, []);
 
   return (
+    <>
+    <div className="contact-image">
+        <div className="contact-text">
+          <h1>Blog</h1>
+        </div>
+      </div>
     <div className="container mt-4">
       <div className="row">
         <div className="col-lg-8">
           {posts.map((post) => {
             const imageBlob = post.mainImage 
-              ? new Blob([Int8Array.from(post.mainImage.data.data)], { type: post.mainImage.contentType }) 
-              : null;
+            ? new Blob([Int8Array.from(post.mainImage.data.data)], { type: post.mainImage.contentType }) 
+            : null;
             const imageUrl = imageBlob ? window.URL.createObjectURL(imageBlob) : null;
-
+            
             return (
               <div key={post._id} className="card mb-4">
                 {imageUrl && (
                   <img
-                    src={imageUrl}
-                    alt="Main"
-                    className="card-img-top"
+                  src={imageUrl}
+                  alt="Main"
+                  className="card-img-top"
                   />
                 )}
                 <div className="card-body">
@@ -55,6 +61,7 @@ const Blog = () => {
         </div>
       </div>
     </div>
+          </>
   );
 };
 
