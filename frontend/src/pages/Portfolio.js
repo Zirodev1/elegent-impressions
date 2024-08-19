@@ -10,20 +10,43 @@ const Portfolio = () => {
       event1: [
           require('../images/portfolio/americanheart/1.jpg'),
           require('../images/portfolio/americanheart/2.jpg'),
-         
-          // Add more images as needed
+          require('../images/portfolio/americanheart/3.jpg'),
+          require('../images/portfolio/americanheart/4.jpg'),
+          require('../images/portfolio/americanheart/5.jpg'),
+          require('../images/portfolio/americanheart/6.jpg'),
       ],
       event2: [
+          // require('../images/portfolio/engagment/1.jpg'),
+          require('../images/portfolio/engagment/2.jpg'),
+          require('../images/portfolio/engagment/3.jpg'),
           require('../images/portfolio/engagment/4.jpg'),
-          'event2_image2.jpg',
-          'event2_image3.jpg'
-          // Add more images as needed
       ],
       event3: [
         require('../images/portfolio/graduation/1.jpg'),
-          'event3_image2.jpg',
-          'event3_image3.jpg'
-          // Add more images as needed
+        require('../images/portfolio/graduation/2.jpg'),
+        require('../images/portfolio/graduation/3.jpg'),
+        require('../images/portfolio/graduation/4.jpg'),
+        require('../images/portfolio/graduation/5.jpg'),
+      ],
+      event4: [
+        require('../images/portfolio/hawaiienpicnic/1.jpg'),
+   
+      ],
+      event5: [
+        require('../images/portfolio/icecream/1.jpg'),
+  
+      ],
+      event6: [
+        require('../images/portfolio/pieday/1.jpg'),
+     
+      ],
+      event7: [
+        require('../images/portfolio/popcorn/2.jpg'),
+   
+      ],
+      event8: [
+        require('../images/portfolio/superbowl/1.jpg'),
+    
       ],
       // Add more events as needed
   };
