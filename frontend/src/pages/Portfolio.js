@@ -30,22 +30,39 @@ const Portfolio = () => {
       ],
       event4: [
         require('../images/portfolio/hawaiienpicnic/1.jpg'),
+        require('../images/portfolio/hawaiienpicnic/2.jpg'),
+        require('../images/portfolio/hawaiienpicnic/3.jpg'),
+        require('../images/portfolio/hawaiienpicnic/4.jpg'),
    
       ],
       event5: [
         require('../images/portfolio/icecream/1.jpg'),
+        require('../images/portfolio/icecream/2.jpg'),
+        require('../images/portfolio/icecream/3.jpg'),
+        require('../images/portfolio/icecream/4.jpg'),
+        require('../images/portfolio/icecream/5.jpg'),
+        require('../images/portfolio/icecream/6.jpg'),
   
       ],
       event6: [
         require('../images/portfolio/pieday/1.jpg'),
+        require('../images/portfolio/pieday/2.jpg'),
+        require('../images/portfolio/pieday/3.jpg'),
+        require('../images/portfolio/pieday/4.jpg'),
      
       ],
       event7: [
         require('../images/portfolio/popcorn/2.jpg'),
+        require('../images/portfolio/popcorn/3.jpg'),
    
       ],
       event8: [
         require('../images/portfolio/superbowl/1.jpg'),
+        require('../images/portfolio/superbowl/2.jpg'),
+        require('../images/portfolio/superbowl/3.jpg'),
+        require('../images/portfolio/superbowl/4.jpg'),
+        require('../images/portfolio/superbowl/5.jpg'),
+        require('../images/portfolio/superbowl/6.jpg'),
     
       ],
       // Add more events as needed
@@ -69,7 +86,7 @@ const Portfolio = () => {
       </div>
       <div className="container gallery-container">
             <h2>Photo Gallery</h2>
-            <hr className="line line-hr-left" />
+            <hr className="line port-line-hr" />
             <div className="gallery-grid">
                 {Object.keys(events).map((eventId, index) => (
                     <div className="gallery-item" key={index} onClick={() => openGallery(eventId)}>

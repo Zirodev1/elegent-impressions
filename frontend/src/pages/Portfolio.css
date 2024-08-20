@@ -12,7 +12,7 @@
   color: #333;
 }
 
-.line-hr-left {
+.port-line-hr {
   width: 50px;
   height: 3px;
   background-color: #b5854b;
@@ -24,12 +24,18 @@
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  gap: 40px;
+}
+
+.gallery-item {
+  width: 100%;
+  overflow: hidden;
 }
 
 .gallery-item img {
   width: 100%;
-  height: auto;
+  height: 300px;
+  object-fit: cover;
   cursor: pointer;
   transition: transform 0.3s;
 }
