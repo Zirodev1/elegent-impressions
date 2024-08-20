@@ -1,22 +1,81 @@
 .footer {
-  height: 300px;
-  background-color: #0D1F2D ;
-  color: white;
+  background-color: #0D1F2D;
+  color: #fff;
+  padding: 50px 0 20px;
+  font-family: Arial, sans-serif;
 }
 
-.footer-links {
+.footer-content {
   display: flex;
-  height: 200px;
+  flex-wrap: wrap;
   justify-content: space-between;
-  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-.link-sec {
-  height: 120px;
+.footer-section {
+  flex: 1;
+  margin-bottom: 30px;
+  min-width: 200px;
 }
 
-.link-sec li {
+.footer-logo {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  font-family: 'Playfair Display', serif;
+}
+
+.footer-tagline {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #ccc;
+}
+
+.footer-section h3 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  color: #b5854b;
+}
+
+.footer-section ul {
   list-style: none;
-  text-align: left;
-  text-align: left;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section ul li a,
+.footer-section p {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+  color: #fff;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #2c3e50;
+}
+
+.footer-bottom p {
+  font-size: 0.8rem;
+  color: #bbb;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+  }
+
+  .footer-section {
+    margin-bottom: 30px;
+  }
 }

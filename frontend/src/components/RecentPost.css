@@ -59,9 +59,9 @@
 
 .post-content {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
-  padding: 1.5rem;
+  align-items: center;
   background-color: #fff;
   position: relative;
 }
@@ -76,6 +76,15 @@
   color: #b5854b;
 }
 
+.title-readmore {
+  width: 230px;
+  display: flex;
+  flex-direction: column ;
+  justify-content: start;
+  align-items: start;
+  margin-left: 20px;
+}
+ 
 .post-date {
   font-family: 'Playfair Display', serif;
   font-size: 3rem;
@@ -98,7 +107,6 @@
 }
 
 .read-more {
-  align-self: flex-start;
   color: #b5854b;
   text-decoration: none;
   font-size: 0.9rem;

@@ -3,7 +3,7 @@ import './ImageSlider.css';
 
 const ImageSlider = () => {
   const importAll = (r) => r.keys().map(r);
-  const images = importAll(require.context('../media_library/imageslider', false, /\.(png|jpe?g|svg)$/));
+  const images = importAll(require.context('../images/imageslider', false, /\.(png|jpe?g|svg)$/));
 
   const [currentIndex, setCurrentIndex] = useState(0);
 

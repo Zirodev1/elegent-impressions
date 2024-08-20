@@ -12,6 +12,7 @@ import Portfolio from './pages/Portfolio';
 import About from './pages/About';
 
 import './App.css';
+import ScrollToTop from './components/ScrollToTo';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         
       </div>
       <Footer />
+      <ScrollToTop/>
     </Router>
   );
 }

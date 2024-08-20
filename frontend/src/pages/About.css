@@ -24,15 +24,10 @@
   color: #666;
 }
 
-section {
-  margin-bottom: 60px;
-}
-
 h2 {
   font-size: 2rem;
   margin-bottom: 20px;
   color: #b5854b;
-  text-align: center;
 }
 
 .about-intro p {
