@@ -1,59 +1,71 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import "./RecentPost.css";
 
 const RecentPosts = () => {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchRecentPosts = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/posts?limit=3'); // Fetch the 3 most recent posts
+        const response = await axios.get(
+          "http://localhost:5000/api/posts/recent"
+        );
         setPosts(response.data);
+        setLoading(false);
       } catch (error) {
-        console.error('Error fetching recent posts:', error);
+        console.error("Error fetching recent posts:", error);
+        setError("Failed to load recent posts. Please try again later.");
+        setLoading(false);
       }
     };
 
     fetchRecentPosts();
   }, []);
 
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
+
   return (
-    <div className="container mt-4">
-      <h2 className="mb-4">Recent Blog Posts</h2>
-      <div className="row">
-        {posts.map((post) => {
+    <section className="elegant-recent-posts">
+      <h2 className="section-title">Latest News</h2>
+      <div className="posts-container">
+        {posts.map((post, index) => {
           const imageBlob = post.mainImage 
             ? new Blob([Int8Array.from(post.mainImage.data.data)], { type: post.mainImage.contentType }) 
             : null;
-          const imageUrl = imageBlob ? window.URL.createObjectURL(imageBlob) : null;
+          const imageUrl = imageBlob ? URL.createObjectURL(imageBlob) : null;
 
           return (
-            <div key={post._id} className="col-md-4 mb-4">
-              <div className="card">
-                {imageUrl && (
-                  <img
-                    src={imageUrl}
-                    alt={post.title}
-                    className="card-img-top"
-                    style={{ height: '200px', objectFit: 'cover' }}
-                  />
-                )}
-                <div className="card-body">
-                  <h5 className="card-title">{post.title}</h5>
-                  <p className="card-text text-muted">
-                    {new Date(post.date).toLocaleDateString()}
-                  </p>
+            <div key={post._id} className={`post-item`}>
+              <div className="post-image" style={{ backgroundImage: `url(${imageUrl})` }}></div>
+              <div className="post-content">
+                <div className="post-meta">
+                  <div className="post-date">
+                    {new Date(post.date).getDate()} 
+                    <span>{new Date(post.date).toLocaleDateString('en-US', { month: 'short' }).toUpperCase()}</span>
+                    <span>{new Date(post.date).getFullYear()}</span>
+                  </div>
+                  <div>
+                    <span className="post-author">BY {post.author.toUpperCase()}</span>
+                  </div>
                 </div>
+                <h3 className="post-title">{post.title}</h3>
+                <Link to={`/post/${post._id}`} className="read-more">READ MORE</Link>
               </div>
             </div>
           );
         })}
       </div>
-      <div className="text-center mt-4">
-        <Link to="/blog" className="btn btn-primary">More Posts</Link>
+
+      {/* More Posts Button */}
+      <div className="more-posts">
+        <Link to="/all-posts">More Posts</Link>
       </div>
-    </div>
+    </section>
   );
 };
 
