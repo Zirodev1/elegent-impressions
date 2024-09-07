@@ -22,38 +22,7 @@ const About = () => {
         </p>
       </section>
 
-      <section className="services">
-        <h2>Our Services</h2>
-        <div className="service-grid">
-          <div className="service-item">
-            <h3>Social Events</h3>
-            <ul>
-              <li>Music entertainment evenings</li>
-              <li>Children's parties</li>
-              <li>Anniversary gatherings</li>
-              <li>Retirement parties</li>
-              <li>Date night itineraries</li>
-              <li>Family reunions</li>
-            </ul>
-          </div>
-          <div className="service-item">
-            <h3>Corporate Events</h3>
-            <ul>
-              <li>Golf outings</li>
-              <li>Galas</li>
-              <li>Team building retreats</li>
-            </ul>
-          </div>
-          <div className="service-item">
-            <h3>Travel Planning</h3>
-            <ul>
-              <li>Family vacation research</li>
-              <li>Cost analysis breakdown</li>
-              <li>Detailed itinerary planning</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+      
 
       <section className="company-vision">
         <h2>Our Vision</h2>
