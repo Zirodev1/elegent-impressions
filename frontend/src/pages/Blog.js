@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 
+import './Blog.css'
+
 const Blog = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -28,56 +30,44 @@ const Blog = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <>
-      <div className="contact-image">
-        <div className="contact-text">
-          <h1>Blog</h1>
-        </div>
+    <div className='blog-page'>
+      <div className="blog-hero">
+        <h1>Our Blog</h1>
+        <p>Insights, Ideas, and Insperation</p>
       </div>
-      <div className="container mt-4">
-        <div className="row">
-          <div className="col-lg-8">
-            {posts.map((post) => {
-              const imageBlob = post.mainImage 
-                ? new Blob([Int8Array.from(post.mainImage.data.data)], { type: post.mainImage.contentType }) 
-                : null;
-              const imageUrl = imageBlob ? window.URL.createObjectURL(imageBlob) : null;
+      <div className="blog-container">
+        <main className="blog-main">
+          {posts.map((post) => {
+            const imageBlob = post.mainImage 
+              ? new Blob([Int8Array.from(post.mainImage.data.data)], { type: post.mainImage.contentType }) 
+              : null;
+            const imageUrl = imageBlob ? window.URL.createObjectURL(imageBlob) : null;
 
-              return (
-                <div key={post._id} className="card mb-4">
-                  {imageUrl && (
-                    <img
-                      src={imageUrl}
-                      alt="Main"
-                      className="card-img-top"
-                      style={{ maxHeight: '300px', objectFit: 'cover' }}
-                    />
-                  )}
-                  <div className="card-body">
-                    <h2 className="card-title">{post.title}</h2>
-                    <p className="card-text text-muted">
-                      By {post.author} on {new Date(post.date).toLocaleDateString()}
-                    </p>
-                    <p className="card-text">{post.content.substring(0, 150)}...</p>
-                    <Link to={`/post/${post._id}`} className="btn btn-primary">Read More</Link>
+            return (
+              <article key={post._id} className="blog-post">
+                {imageUrl && (
+                  <div className="blog-post-image">
+                    <img src={imageUrl} alt={post.title} />
                   </div>
-                  {post.categories && post.categories.length > 0 && (
-                    <div className="card-footer">
-                      <small className="text-muted">
-                        Categories: {post.categories.join(', ')}
-                      </small>
-                    </div>
-                  )}
+                )}
+                <div className="blog-post-content">
+                  <h2 className="blog-post-title">{post.title}</h2>
+                  <div className="blog-post-meta">
+                    <span className="blog-post-author">By {post.author}</span>
+                    <span className="blog-post-date">{new Date(post.date).toLocaleDateString()}</span>
+                  </div>
+                  <p className="blog-post-excerpt">{post.content.substring(0, 150)}...</p>
+                  <Link to={`/post/${post._id}`} className="blog-post-link">Read More</Link>
                 </div>
-              );
-            })}
-          </div>
-          <div className="col-lg-4">
-            <Sidebar />
-          </div>
-        </div>
+              </article>
+            );
+          })}
+        </main>
+        <aside className="blog-sidebar">
+          <Sidebar />
+        </aside>
       </div>
-    </>
+    </div>
   );
 };
 
