@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowRight, Mail, Instagram } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import tempProfile from "../images/tempProfile.png";
 import tempImage from "../images/temp.jpg";

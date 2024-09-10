@@ -1,7 +1,8 @@
 .newsletter-section {
   background-color: #f8f9fa;
-  padding: 4rem 2rem;
+  padding: 2rem 2rem;
   text-align: center;
+  height: 400px;
 }
 
 .newsletter-content {
