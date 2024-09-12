@@ -11,6 +11,7 @@ import Services from './pages/Services';
 import Portfolio from './pages/Portfolio';
 import About from './pages/About';
 import SignIn from './pages/admin/SignIn';
+import SignUp from './pages/admin/SignUp';
 
 import './App.css';
 import ScrollToTop from './components/ScrollToTo';
@@ -28,6 +29,7 @@ function App() {
           <Route path='/portfolio' Component={Portfolio} />
           <Route path='/about' Component={About} />
           <Route path='/sign-in' Component={SignIn} />
+          <Route path='/sign-up' Component={SignUp} />
           <Route path='/admin' Component={AdminPanel} />
           <Route path='/post/:id' Component={Post} />
         </Routes>
