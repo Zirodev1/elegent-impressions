@@ -3,13 +3,14 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import AdminPanel from './pages/AdminPanel';
+import AdminPanel from './pages/admin/AdminPanel';
 import Post from './components/Post';
 import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 import Services from './pages/Services';
 import Portfolio from './pages/Portfolio';
 import About from './pages/About';
+import SignIn from './pages/admin/SignIn';
 
 import './App.css';
 import ScrollToTop from './components/ScrollToTo';
@@ -26,6 +27,7 @@ function App() {
           <Route path='/services' Component={Services} />
           <Route path='/portfolio' Component={Portfolio} />
           <Route path='/about' Component={About} />
+          <Route path='/sign-in' Component={SignIn} />
           <Route path='/admin' Component={AdminPanel} />
           <Route path='/post/:id' Component={Post} />
         </Routes>
