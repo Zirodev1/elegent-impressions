@@ -18,8 +18,8 @@ export default function AdminPanel() {
     }, [location.search])
 
     return (
-        <div className="dashboard-container">
-            <div >
+        <div className="min-h-screen flex flex-col md:flex-row">
+            <div className="md:w-56">
                 <AdminSidebar />
             </div>
             {tab === 'profile' && <AdminProfile />}
