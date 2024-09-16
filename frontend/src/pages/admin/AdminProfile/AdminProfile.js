@@ -124,19 +124,28 @@ export default function AdminProfile() {
   };
   const handleDeleteUser = async () => {
     setShowModal(false);
+
     try {
       dispatch(deleteUserStart());
+
       const res = await fetch(`/api/user/delete/${currentUser._id}`, {
         method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
       });
-      const data = await res.json();
+      
       if (!res.ok) {
-        dispatch(deleteUserFailure(data.message));
-      } else {
-        dispatch(deleteUserSuccess(data));
+        const errorData = await res.json();
+        dispatch(deleteUserFailure(errorData.message || 'Failed to delete user.'));
+        return;
       }
+
+      const data = await res.json();
+      dispatch(deleteUserSuccess(data));
+
     } catch (error) {
-      dispatch(deleteUserFailure(error.message));
+      dispatch(deleteUserFailure(error.message) || 'An error occured while deleting the user.');
     }
   };
 
