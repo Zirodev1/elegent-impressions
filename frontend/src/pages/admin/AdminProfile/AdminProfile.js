@@ -25,11 +25,11 @@ import { Link } from 'react-router-dom';
 
 export default function AdminProfile() {
   const { currentUser, error, loading } = useSelector((state) => state.user);
-  const [imageFile, setImageFile] = useState(null);
-  const [imageFileUrl, setImageFileUrl] = useState(null);
-  const [imageFileUploadProgress, setImageFileUploadProgress] = useState(null);
-  const [imageFileUploadError, setImageFileUploadError] = useState(null);
-  const [imageFileUploading, setImageFileUploading] = useState(false);
+  const [profileImageFile, setProfileImageFile] = useState(null);
+  const [profileImageFileUrl, setProfileImageFileUrl] = useState(null);
+  const [profileImageFileUploadProgress, setProfileImageFileUploadProgress] = useState(null);
+  const [profileImageFileUploadError, setProfileImageFileUploadError] = useState(null);
+  const [profileImageFileUploading, setProfileImageFileUploading] = useState(false);
   const [updateUserSuccess, setUpdateUserSuccess] = useState(null);
   const [updateUserError, setUpdateUserError] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -39,55 +39,46 @@ export default function AdminProfile() {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setImageFile(file);
-      setImageFileUrl(URL.createObjectURL(file));
+      setProfileImageFile(file);
+      setProfileImageFileUrl(URL.createObjectURL(file));
     }
   };
   useEffect(() => {
-    if (imageFile) {
+    if (profileImageFile) {
       uploadImage();
     }
-  }, [imageFile]);
+  }, [profileImageFile]);
 
   const uploadImage = async () => {
-    // service firebase.storage {
-    //   match /b/{bucket}/o {
-    //     match /{allPaths=**} {
-    //       allow read;
-    //       allow write: if
-    //       request.resource.size < 2 * 1024 * 1024 &&
-    //       request.resource.contentType.matches('image/.*')
-    //     }
-    //   }
-    // }
-    setImageFileUploading(true);
-    setImageFileUploadError(null);
+
+    setProfileImageFileUploading(true);
+    setProfileImageFileUploadError(null);
     const storage = getStorage(app);
-    const fileName = new Date().getTime() + imageFile.name;
+    const fileName = new Date().getTime() + profileImageFile.name;
     const storageRef = ref(storage, fileName);
-    const uploadTask = uploadBytesResumable(storageRef, imageFile);
+    const uploadTask = uploadBytesResumable(storageRef, profileImageFile);
     uploadTask.on(
       'state_changed',
       (snapshot) => {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
 
-        setImageFileUploadProgress(progress.toFixed(0));
+        setProfileImageFileUploadProgress(progress.toFixed(0));
       },
       (error) => {
-        setImageFileUploadError(
+        setProfileImageFileUploadError(
           'Could not upload image (File must be less than 2MB)'
         );
-        setImageFileUploadProgress(null);
-        setImageFile(null);
-        setImageFileUrl(null);
-        setImageFileUploading(false);
+        setProfileImageFileUploadProgress(null);
+        setProfileImageFile(null);
+        setProfileImageFileUrl(null);
+        setProfileImageFileUploading(false);
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          setImageFileUrl(downloadURL);
+          setProfileImageFileUrl(downloadURL);
           setFormData({ ...formData, profilePicture: downloadURL });
-          setImageFileUploading(false);
+          setProfileImageFileUploading(false);
         });
       }
     );
@@ -105,7 +96,7 @@ export default function AdminProfile() {
       setUpdateUserError('No changes made');
       return;
     }
-    if (imageFileUploading) {
+    if (profileImageFileUploading) {
       setUpdateUserError('Please wait for image to upload');
       return;
     }
@@ -179,10 +170,10 @@ export default function AdminProfile() {
           className='relative w-32 h-32 self-center cursor-pointer shadow-md overflow-hidden rounded-full'
           onClick={() => filePickerRef.current.click()}
         >
-          {imageFileUploadProgress && (
+          {profileImageFileUploadProgress && (
             <CircularProgressbar
-              value={imageFileUploadProgress || 0}
-              text={`${imageFileUploadProgress}%`}
+              value={profileImageFileUploadProgress || 0}
+              text={`${profileImageFileUploadProgress}%`}
               strokeWidth={5}
               styles={{
                 root: {
@@ -194,24 +185,24 @@ export default function AdminProfile() {
                 },
                 path: {
                   stroke: `rgba(62, 152, 199, ${
-                    imageFileUploadProgress / 100
+                    profileImageFileUploadProgress / 100
                   })`,
                 },
               }}
             />
           )}
           <img
-            src={imageFileUrl || currentUser.profilePicture}
+            src={profileImageFileUrl || currentUser.profilePicture}
             alt='user'
             className={`rounded-full w-full h-full object-cover border-8 border-[lightgray] ${
-              imageFileUploadProgress &&
-              imageFileUploadProgress < 100 &&
+              profileImageFileUploadProgress &&
+              profileImageFileUploadProgress < 100 &&
               'opacity-60'
             }`}
           />
         </div>
-        {imageFileUploadError && (
-          <Alert color='failure'>{imageFileUploadError}</Alert>
+        {profileImageFileUploadError && (
+          <Alert color='failure'>{profileImageFileUploadError}</Alert>
         )}
         <TextInput
           type='text'
@@ -237,7 +228,7 @@ export default function AdminProfile() {
           type='submit'
           gradientDuoTone='purpleToBlue'
           outline
-          disabled={loading || imageFileUploading}
+          disabled={loading || profileImageFileUploading}
         >
           {loading ? 'Loading...' : 'Update'}
         </Button>

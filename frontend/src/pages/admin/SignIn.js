@@ -41,7 +41,7 @@ const SignIn = () => {
 
       if (res.ok) {
         dispatch(signInSuccess(data));
-        navigate("/admin");
+        navigate("/dashboard");
       }
     } catch (error) {
       dispatch(signInFailure(error.message));
