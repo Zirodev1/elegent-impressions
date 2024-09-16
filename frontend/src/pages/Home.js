@@ -14,7 +14,7 @@ const Home = () => {
         <div>
             <ImageSlider/>
             <div className="moto container-fluid d-flex justify-content-center align-items-center my-5">
-                <h1>Making your event a memorable one… leaving lasting great impressions.</h1>
+                <h1 className="text-4xl font-bold font-serif">Making your event a memorable one… leaving lasting great impressions.</h1>
             </div>
             <AboutSection />
             <ServicesSection />

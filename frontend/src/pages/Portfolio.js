@@ -74,7 +74,7 @@ const Portfolio = () => {
   };
 
   return (
-    <div className="portfolio-page">
+    <div className="portfolio-page mt-16">
       <div className="portfolio-hero">
         <h1>Portfolio</h1>
         <p>A Showcase of Our Elegant Events</p>

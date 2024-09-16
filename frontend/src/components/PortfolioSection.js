@@ -22,16 +22,15 @@ const PortfolioSection = () => {
   };
 
   return (
-    <section className="portfolio-section">
-      <div className="container">
+    <section className="portfolio-section ">
+      <div className="container mx-auto">
         <h2>Our Portfolio</h2>
         <p className="section-description">A glimpse into our elegant events</p>
         <div className="portfolio-grid">
           {Object.entries(events).map(([eventId, image], index) => (
-            <div className="portfolio-item" key={index} onClick={() => openGallery(eventId)}>
+            <div className="portfolio-item mx-2" key={index} onClick={() => openGallery(eventId)}>
               <img src={image} alt={`Event ${index + 1}`} />
               <div className="portfolio-item-overlay">
-                <span>View Event</span>
               </div>
             </div>
           ))}

@@ -32,7 +32,7 @@ const ImageSlider = () => {
   };
 
   return (
-    <div className="slider mt-5 mx-auto">
+    <div className="slider pt-16 mt-5 mx-auto">
       <div className="slider__images-wrapper" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
         {images.map((image, index) => (
           <div

@@ -52,14 +52,8 @@
 }
 
 .about-section-content {
-  width: 780px;
-  height: 500px;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
   font-family: "Montserrat";
   justify-content: center;
-  margin: 0 auto;
 }
 
 .about-section-content p {

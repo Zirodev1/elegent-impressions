@@ -1,13 +1,13 @@
 // src/layouts/MainLayout.jsx
 import { Outlet } from 'react-router-dom';
-import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ScrollToTop from '../components/ScrollToTo';
+import NavbarComponent from '../components/Navbar';
 
 const MainLayout = () => {
   return (
     <>
-      <Navbar />
+      <NavbarComponent />
       <div className='App'>
         <Outlet />
       </div>

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "./Services.css";
 
 import temp from "../images/temp.jpg";
+import heroImage from '../images/3-3.jpg'
 
 const ServiceSection = ({
   title,
@@ -12,57 +13,36 @@ const ServiceSection = ({
   lists,
   index,
 }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      {
-        threshold: 0.1, // Trigger when 10% of the element is visible
-      }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
-
   const isEven = index % 2 === 0;
 
   return (
-    <section
-      ref={sectionRef}
-      className={`service-section ${isVisible ? "animate" : ""} ${isEven ? 'even' : 'odd'}`}
-    >
-      <div className="service-content">
-        <h2 className="title">{title}</h2>
-        <h3 className="subtitle">{subtitle}</h3>
-        <p className="description">{description}</p>
-        <ul>
-          {lists.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
-      </div>
-      <div
-        className="service-image"
-        style={{ backgroundImage: `url(${image})` }}
-        role="img"
-        aria-label={altText}
-      />
-    </section>
+    <>
+     
+      <section
+        className={`flex flex-col w-10/12 mx-auto my-16 ${
+          isEven ? "md:flex-row-reverse" : "md:flex-row"
+        }`}
+      >
+        <div className="flex-1 flex flex-col justify-center p-6 bg-white shadow-md service-content">
+          <h2 className="title">{title}</h2>
+          <h3 className="subtitle">{subtitle}</h3>
+          <p className="description">{description}</p>
+          <ul className="list-none text-left">
+            {lists.map((item) => (
+              <li key={item} className="relative pl-6 text-gray-600">
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div
+          className="flex-1 bg-cover bg-center rounded-2xl service-image"
+          style={{ backgroundImage: `url(${image})` }}
+          role="img"
+          aria-label={altText}
+        />
+      </section>
+    </>
   );
 };
 
@@ -98,7 +78,7 @@ const Services = () => {
       subtitle: "CURATING UNFORGETTABLE JOURNEYS",
       description:
         "We believe that exceptional travel experiences begin with meticulous planning and insider knowledge. Our travel planning services are dedicated to crafting personalized itineraries that cater to your unique preferences and aspirations. Whether it's a family vacation or a solo adventure, we take care of every detail – from researching the perfect destinations to optimizing your budget – ensuring a seamless and enriching travel experience.",
-      image: temp ,
+      image: temp,
       altText: "Bride sitting in vintage car with flowers",
       lists: [
         "Family vacation research",
@@ -110,6 +90,13 @@ const Services = () => {
 
   return (
     <div>
+       <div className="relative h-64 bg-cover bg-center contact-image mt-16"
+        style={{ backgroundImage: {heroImage} }}>
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50">
+          <h1 className="text-white text-5xl font-bold">Our Services</h1>
+          <p className="text-white">Creating Elegant Impressions, One Event at a Time</p>
+        </div>
+      </div>
       {servicesData.map((service, index) => (
         <ServiceSection key={index} {...service} index={index} />
       ))}

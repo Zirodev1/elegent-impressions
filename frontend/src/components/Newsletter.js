@@ -14,7 +14,7 @@ const Newsletter = () => {
     };
 
     return (
-        <section className="newsletter-section">
+        <section className="newsletter-section  mb-32">
             <div className="container newsletter-content">
                 <h2 className="newsletter-title">Join Our Mailing List</h2>
                 <p className="newsletter-description">

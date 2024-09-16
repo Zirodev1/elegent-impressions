@@ -27,20 +27,8 @@
 }
 
 .contacts {
-  font-size: 1rem;
   color: rgb(133, 103, 79);
   margin-right: 3px;
-}
-
-
-
-.contact-form {
-  height: 600px !important;
-  text-align: left;
-}
-
-.contact-form .row {
-  gap: 20px;
 }
 
 
@@ -55,9 +43,8 @@
 .contact-image {
   background-image: url('../images/3-3.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: top;
   background-attachment: fixed;
-  height: 60vh;
   width: 100%;
   position: relative;
   z-index: 1;
