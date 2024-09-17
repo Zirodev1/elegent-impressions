@@ -50,14 +50,14 @@ export default function AdminSidebar() {
             <Sidebar.Item
               active={tab === 'profile'}
               icon={HiUser}
-              label={'User'}
+              label={currentUser.isAdmin ? "Admin" : currentUser.isBlogger ? "Blogger" : 'User'}
               labelColor='dark'
               as='div'
             >
               Profile
             </Sidebar.Item>
           </Link>
-          {currentUser.isAdmin && (
+          {(currentUser.isAdmin || currentUser.isBlogger) && (
             <Link to='/dashboard?tab=posts'>
               <Sidebar.Item
                 active={tab === 'posts'}

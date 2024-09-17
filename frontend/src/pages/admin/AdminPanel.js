@@ -4,6 +4,7 @@ import AdminSidebar from "./AdminSidebar/AdminSidebar";
 import AdminProfile from "./AdminProfile/AdminProfile";
 
 import './AdminPanel.css'
+import DashPosts from "./DashPosts";
 
 export default function AdminPanel() {
     const location = useLocation();
@@ -23,6 +24,7 @@ export default function AdminPanel() {
                 <AdminSidebar />
             </div>
             {tab === 'profile' && <AdminProfile />}
+            {tab === 'posts' && <DashPosts />}
         </div>
     )
 }
