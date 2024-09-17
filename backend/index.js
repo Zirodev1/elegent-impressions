@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
-// import postRoutes from './routes/postRoutes.js'
+import postRoutes from './routes/postRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import authRoutes from './routes/authRoutes.js';
 import cors from 'cors'
@@ -27,13 +27,13 @@ mongoose
   .then(() => console.log("Conected to MongoDB"))
   .catch((err) => console.error("MongoDB connection error: ", err));
 
-// app.use('/api/posts', postRoutes);
-
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
-
-app.use('/api/user', userRoutes);
-app.use('/api/auth', authRoutes);
+  
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+  
+  app.use('/api/user', userRoutes);
+  app.use('/api/auth', authRoutes);
+  app.use('/api/posts', postRoutes);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
