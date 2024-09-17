@@ -15,6 +15,8 @@ import "./App.css";
 import MainLayout from "./layouts/MainLayout";
 import AdminLayout from "./layouts/AdminLayout";
 import PrivateRoute from "./components/PrivateRoute";
+import OnlyAdminPrivateRoute from "./components/OnlyAdminPrivateRoute";
+import CreatePosts from "./pages/admin/CreatePosts";
 
 function App() {
   return (
@@ -37,6 +39,11 @@ function App() {
         <Route element={<PrivateRoute/>}>
           <Route element={<AdminLayout />}>
             <Route index path="/dashboard" element={<AdminPanel />} />
+          </Route>
+        </Route>
+        <Route element={<OnlyAdminPrivateRoute/>}>
+          <Route element={<AdminLayout />}>
+            <Route index path="/create-post" element={<CreatePosts />} />
           </Route>
         </Route>
       </Routes>
