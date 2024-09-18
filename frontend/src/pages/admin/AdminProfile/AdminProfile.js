@@ -242,7 +242,7 @@ export default function AdminProfile() {
         >
           {loading ? 'Loading...' : 'Update'}
         </Button>
-        {currentUser.isAdmin && (
+        {(currentUser.isAdmin || currentUser.isBlogger) && (
           <Link to={'/create-post'}>
             <Button
               type='button'

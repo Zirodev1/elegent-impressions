@@ -61,6 +61,7 @@ export default function CreatePosts() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          
         },
         body: JSON.stringify(formData),
       });
@@ -101,9 +102,9 @@ export default function CreatePosts() {
             }
           >
             <option value='uncategorized'>Select a category</option>
-            <option value='javascript'>JavaScript</option>
-            <option value='reactjs'>React.js</option>
-            <option value='nextjs'>Next.js</option>
+            <option value='webdev'>Web dev</option>
+            <option value='marketing'>marketing</option>
+            <option value='design'>design</option>
           </Select>
         </div>
         <div className='flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3'>
