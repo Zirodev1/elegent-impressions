@@ -17,8 +17,8 @@ const NavbarComponent = () => {
     <header className="bg-white">
     <nav aria-label="Global" className="mx-auto flex sticky max-w-7xl items-center justify-between p-6 lg:px-8">
       <div className="flex lg:flex-1">
-        <Link href="#" className="-m-1.5 p-1.5">
-          <span className="sr-only">Elegant Impressions</span>
+        <Link href="/" className="-m-1.5 p-1.5">
+          <span className="">Elegant Impressions</span>
           <img alt="" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" className="h-8 w-auto" />
         </Link>
       </div>
@@ -36,13 +36,16 @@ const NavbarComponent = () => {
        
 
         <Link href="#" className="text-sm font-semibold leading-6 text-gray-900">
-          Features
+          About
         </Link>
         <Link href="#" className="text-sm font-semibold leading-6 text-gray-900">
-          Marketplace
+          Services
         </Link>
         <Link href="#" className="text-sm font-semibold leading-6 text-gray-900">
-          Company
+          Blog
+        </Link>
+        <Link href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          Contact
         </Link>
       </PopoverGroup>
     </nav>

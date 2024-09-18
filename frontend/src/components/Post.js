@@ -1,90 +1,102 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { Button, Spinner } from 'flowbite-react';
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import CallToAction from '../components/CallToAction';
+import PostCard from '../components/PostCard'; // Make sure the component name is capitalized
 
 const Post = () => {
-  const { id } = useParams();
-  const [post, setPost] = useState(null);
+  const { postSlug } = useParams();
   const [loading, setLoading] = useState(true);
-  const [error, setError ] = useState(null);
+  const [error, setError] = useState(false);
+  const [post, setPost] = useState(null);
+  const [recentPosts, setRecentPosts] = useState(null);
 
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/posts/${id}`);
-        setPost(response.data);
-        setLoading(false);
+        const res = await fetch(`/api/post/getposts?slug=${postSlug}`);
+        const data = await res.json();
+        if (!res.ok) {
+          setError(true);
+          setLoading(false);
+          return;
+        }
+        if (res.ok) {
+          setPost(data.post[0]);
+          setLoading(false);
+          setError(false);
+        }
       } catch (error) {
-        console.error('Error fetching post:', error);
-        setError("Failed to load. Please try again later.")
-        setLoading(false)
+        setError(true);
+        setLoading(false);
       }
     };
-
     fetchPost();
-  }, [id]);
+  }, [postSlug]);
 
-  if (loading) return <div>Loading...</div>
-  if (error) return <div>{error}</div>
-  if (!post) return <div>No post found</div>;
+  useEffect(() => {
+    try {
+      const fetchRecentPosts = async () => {
+        const res = await fetch(`/api/post/getposts?limit=3`);
+        const data = await res.json();
+        if (res.ok) {
+          setRecentPosts(data.posts);
+        }
+      };
+      fetchRecentPosts();
+    } catch (error) {
+      console.log(error.message);
+    }
+  }, []);
 
+  if (loading)
+    return (
+      <div className='flex justify-center items-center min-h-screen'>
+        <Spinner size='xl' />
+      </div>
+    );
+  
   return (
-    <div className="container mt-5">
-      <h1 className="mb-4">{post.title}</h1>
-      <p className="text-muted">
-        By {post.author} on {new Date(post.date).toLocaleDateString()}
-      </p>
-      {post.mainImage && (
-        <img
-          src={`data:${post.mainImage.contentType};base64,${post.mainImage.data}`}
-          alt="Main"
-          className="img-fluid mb-4"
-          style={{ maxWidth: '100%', height: 'auto' }}
-        />
-      )}
-      <div dangerouslySetInnerHTML={{ __html: post.content }} />
-      
-      {post.additionalImages && post.additionalImages.length > 0 && (
-        <div className="mt-5">
-          <h3>Additional Images</h3>
-          <div className="row">
-            {post.additionalImages.map((img, index) => (
-              <div key={index} className="col-md-4 mb-3">
-                <img
-                  src={`data:${img.contentType};base64,${img.data}`}
-                  alt={`Additional ${index + 1}`}
-                  className="img-fluid"
-                />
-              </div>
-            ))}
-          </div>
+    <main className='p-3 flex flex-col max-w-6xl mx-auto min-h-screen'>
+      <h1 className='text-3xl mt-10 p-3 text-center font-serif max-w-2xl mx-auto lg:text-4xl'>
+        {post && post.title}
+      </h1>
+      <Link
+        to={`/search?category=${post && post.category}`}
+        className='self-center mt-5'
+      >
+        <Button color='gray' pill size='xs'>
+          {post && post.category}
+        </Button>
+      </Link>
+      <img
+        src={post && post.image}
+        alt={post && post.title}
+        className='mt-10 p-3 max-h-[600px] w-full object-cover'
+      />
+      <div className='flex justify-between p-3 border-b border-slate-500 mx-auto w-full max-w-2xl text-xs'>
+        <span>{post && new Date(post.createdAt).toLocaleDateString()}</span>
+        <span className='italic'>
+          {post && (post.content.length / 1000).toFixed(0)} mins read
+        </span>
+      </div>
+      <div
+        className='p-3 max-w-2xl mx-auto w-full post-content'
+        dangerouslySetInnerHTML={{ __html: post && post.content }}
+      ></div>
+      {/* <div className='max-w-4xl mx-auto w-full'>
+        <CallToAction />
+      </div> */}
+
+      <div className='flex flex-col justify-center items-center mb-5'>
+        <h1 className='text-xl mt-5'>Recent articles</h1>
+        <div className='flex flex-wrap gap-5 mt-5 justify-center'>
+          {recentPosts &&
+            recentPosts.map((post) => <PostCard key={post._id} post={post} />)} {/* Use PostCard */}
         </div>
-      )}
-      
-      {post.categories && post.categories.length > 0 && (
-        <div className="mt-4">
-          <h4>Categories:</h4>
-          <ul className="list-inline">
-            {post.categories.map((category, index) => (
-              <li key={index} className="list-inline-item">{category}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-      
-      {post.tags && post.tags.length > 0 && (
-        <div className="mt-4">
-          <h4>Tags:</h4>
-          <ul className="list-inline">
-            {post.tags.map((tag, index) => (
-              <li key={index} className="list-inline-item">{tag}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
+      </div>
+    </main>
   );
 };
 
 export default Post;
-

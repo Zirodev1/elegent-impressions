@@ -33,7 +33,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/post/:id" element={<Post />} />
+          <Route path="/post/:postSlug" element={<Post />} />
         </Route>
 
         {/* Admin layout */}
