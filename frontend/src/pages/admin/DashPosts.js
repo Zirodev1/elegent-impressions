@@ -19,7 +19,7 @@ export default function DashPosts() {
         const data = await res.json();
         if(res.ok) {
           setUserPosts(data.post);
-          if(data.posts.length < 9) {
+          if(data.post.length < 9) {
             setShowMore(false);
           }
         }
@@ -38,8 +38,8 @@ export default function DashPosts() {
       const res = await fetch(`/api/post/getposts?userId=${currentUser._id}&startIndex=${startIndex}`);
       const data = await res.json();
       if(res.ok) {
-        setUserPosts((prev) => [...prev, ...data.posts]);
-        if(data.posts.length < 9) {
+        setUserPosts((prev) => [...prev, ...data.post]);
+        if(data.post.length < 9) {
           setShowMore(false);
         }
       }

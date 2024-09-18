@@ -17,6 +17,7 @@ import AdminLayout from "./layouts/AdminLayout";
 import PrivateRoute from "./components/PrivateRoute";
 import OnlyAdminPrivateRoute from "./components/OnlyAdminPrivateRoute";
 import CreatePosts from "./pages/admin/CreatePosts";
+import UpdatePosts from "./pages/admin/UpdatePost";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
         <Route element={<OnlyAdminPrivateRoute/>}>
           <Route element={<AdminLayout />}>
             <Route index path="/create-post" element={<CreatePosts />} />
+            <Route index path="/update-post/:postId" element={<UpdatePosts />} />
           </Route>
         </Route>
       </Routes>
