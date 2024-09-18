@@ -5,6 +5,7 @@ import AdminProfile from "./AdminProfile/AdminProfile";
 
 import './AdminPanel.css'
 import DashPosts from "./DashPosts";
+import DashUsers from "./DashUsers";
 
 export default function AdminPanel() {
     const location = useLocation();
@@ -25,6 +26,7 @@ export default function AdminPanel() {
             </div>
             {tab === 'profile' && <AdminProfile />}
             {tab === 'posts' && <DashPosts />}
+            {tab === 'users' && <DashUsers />}
         </div>
     )
 }
