@@ -2,7 +2,7 @@ import { Button, Spinner } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import CallToAction from '../components/CallToAction';
-import PostCard from '../components/PostCard'; // Make sure the component name is capitalized
+import PostCard from '../components/PostCard';
 
 const Post = () => {
   const { postSlug } = useParams();
@@ -40,7 +40,7 @@ const Post = () => {
         const res = await fetch(`/api/post/getposts?limit=3`);
         const data = await res.json();
         if (res.ok) {
-          setRecentPosts(data.posts);
+          setRecentPosts(data.post);
         }
       };
       fetchRecentPosts();
